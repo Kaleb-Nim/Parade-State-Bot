@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  parade-state-bot:
+    build: .
+    container_name: parade-state-bot
+    volumes:
+      - ./:/app
+      - ./logs:/app/logs
+      - ./credentials.json:/app/credentials.json:ro
+    environment:
+      - TZ=Asia/Singapore
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: python -m app.main
