@@ -8,7 +8,7 @@ from app.models.duty import DutyInstructor, DutySchedule
 from app.models.parade_state import ParadeState
 from app.models.staff import StaffList
 from app.services.google_sheets import GoogleSheetsService
-from app.services.telegram import TelegramService
+from app.services.telegram_service import TelegramService
 
 
 class MessageBuilderService:

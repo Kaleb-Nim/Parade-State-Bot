@@ -12,7 +12,7 @@ from app.config import settings
 from app.models.parade_state import ParadeState
 from app.services.google_sheets import GoogleSheetsService
 from app.services.message_builder import MessageBuilderService
-from app.services.telegram import TelegramService
+from app.services.telegram_service import TelegramService
 from app.utils.date_helpers import get_local_date
 
 # Load environment variables

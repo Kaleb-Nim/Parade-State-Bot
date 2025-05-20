@@ -28,6 +28,7 @@ class StatusType(str, Enum):
     AO = "AO"  # Attached Out
     OTH = "OTH"  # Other
     DS = "DS"  # DS Off / Duty Staff
+    OTHERS = "OTHERS"  # Catch-all for unrecognized status
 
 
 class StaffSynonym(BaseModel):

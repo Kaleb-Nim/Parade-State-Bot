@@ -306,10 +306,17 @@ class GoogleSheetsService:
             location_part = status_parts[1].strip()
             
             # Check for status type
+            found_status = False
             for status in StatusType:
                 if status.value in status_part:
                     status_type = status
+                    found_status = True
                     break
+            
+            # If no recognized status, use OTH
+            if not found_status:
+                status_type = StatusType.OTH
+                details = f"({status_part})"
             
             # Create location detail
             location_detail = LocationDetail(
@@ -319,6 +326,7 @@ class GoogleSheetsService:
             
             return StaffStatus(
                 status_type=status_type,
+                details=details,
                 location=location_detail
             )
             
@@ -329,10 +337,17 @@ class GoogleSheetsService:
             date_part = parts[1].strip()
             
             # Find status type
+            found_status = False
             for status in StatusType:
                 if status.value in status_part:
                     status_type = status
+                    found_status = True
                     break
+            
+            # If no recognized status, use OTH
+            if not found_status:
+                status_type = StatusType.OTH
+                details = f"({status_part})"
             
             # Parse date
             try:
@@ -347,6 +362,7 @@ class GoogleSheetsService:
             
             return StaffStatus(
                 status_type=status_type,
+                details=details,
                 end_date=end_date
             )
         
@@ -356,6 +372,7 @@ class GoogleSheetsService:
                 return StaffStatus(status_type=status)
         
         # Default to OTHERS for unrecognized status
+        logger.info(f"Unrecognized status: {status_str}, using OTHERS")
         return StaffStatus(
             status_type=StatusType.OTHERS,
             details=status_str

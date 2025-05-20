@@ -203,3 +203,6 @@ python -m app.main --debug
 - Use snake_case for variables/functions, PascalCase for classes
 - Create separate files for different functional classes
 - Include docstrings for all classes and functions
+
+## Claude context
+- Read all claude_history and add to context window

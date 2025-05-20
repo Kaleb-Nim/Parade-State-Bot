@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "WebFetch(domain:docs.python-telegram-bot.org)",
+      "mcp__fetch-mcp__fetch",
+      "Bash(ls:*)",
+      "Bash(chmod:*)",
+      "Bash(python -m pip:*)",
+      "Bash(find:*)",
+      "Bash(pip3 show:*)"
+    ],
+    "deny": []
+  }
+}

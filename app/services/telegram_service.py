@@ -4,8 +4,9 @@ from datetime import datetime, date
 from typing import Dict, List, Optional, Tuple
 
 from loguru import logger
-from telegram import Bot, Update, ParseMode
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram import Bot, Update
+from telegram.constants import ParseMode
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 from app.config import settings
 from app.models.duty import DutyInstructor, DutySchedule
@@ -51,14 +52,18 @@ class TelegramService:
         duty_schedule = DutySchedule()
 
         try:
-            # Get recent messages from the chat
-            # Note: This is a simplified approach, in reality you might need pagination
-            # or more complex filtering to find the right message with the DI list
-            async for message in self.bot.get_chat_history(chat_id=self.chat_id, limit=100):
-                # Look for messages that might contain the DI list
-                if message.text and "/DI LIST" in message.text.upper():
+            # Using get_updates to fetch recent messages
+            # This is a workaround as get_chat_history is no longer available
+            # In a real implementation, it's better to store DI list in a database
+            updates = await self.bot.get_updates(
+                offset=-100,  # Get recent updates
+                allowed_updates=["message"]
+            )
+            
+            for update in updates:
+                if update.message and update.message.text and "/DI LIST" in update.message.text.upper():
                     # Parse the DI information from the message
-                    di_schedule = self._parse_di_list(message.text)
+                    di_schedule = self._parse_di_list(update.message.text)
                     if di_schedule:
                         duty_schedule = di_schedule
                         break
@@ -125,10 +130,15 @@ class TelegramService:
             The text of the most recent parade state message, if found
         """
         try:
-            # Look for the most recent parade state message
-            async for message in self.bot.get_chat_history(chat_id=self.chat_id, limit=50):
-                if message.text and "Parade State for" in message.text:
-                    return message.text
+            # Using get_updates instead of get_chat_history
+            updates = await self.bot.get_updates(
+                offset=-100,  # Get recent updates
+                allowed_updates=["message"]
+            )
+            
+            for update in updates:
+                if update.message and update.message.text and "Parade State for" in update.message.text:
+                    return update.message.text
             
             return None
         
