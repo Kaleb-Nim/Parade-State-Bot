@@ -79,7 +79,7 @@ Next DI: ME3 Jonathan Koe
 12. Wilfred - P
 13. Edmund Cheong - P
 14. Jonathan - OL TILL 29/04
-15. Benson - P
+15. Benson - P(AM), OB@SBAB(PM)
 16. Edmund Yeo - P
 17. Thian Kiong - P
 18. Tan Kok Kuan - P
@@ -92,6 +92,9 @@ Next DI: ME3 Jonathan Koe
 
 Today's number: 18(AM), 18(PM)
 ```
+
+* If the location of status is different between morning and afternoon, it will be shown as `LOCATION(AM), LOCATION(PM)`.
+* If the status is the same for both AM and PM, no need to show AM/PM.
 
 ## Status Types
 The system recognizes various status types:

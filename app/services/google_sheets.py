@@ -172,9 +172,9 @@ class GoogleSheetsService:
         
         try:
             # Process only the active staff rows
-            for staff_index, row_num in enumerate(sorted(self.active_staff_rows), 1):
+            for staff_index, row_num in enumerate(sorted(self.active_staff_rows), 0):
                 # Convert to 0-indexed for DataFrame
-                df_row_idx = row_num - 1
+                df_row_idx = row_num -2 # idk why -2 but it works
                 
                 # Skip if row doesn't exist in DataFrame
                 if df_row_idx < 0 or df_row_idx >= len(df):
