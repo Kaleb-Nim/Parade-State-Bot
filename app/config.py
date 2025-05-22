@@ -28,6 +28,10 @@ class Settings(BaseSettings):
         default=os.getenv("GOOGLE_SHEET_RANGE", "Sheet1!A1:Z100"),
         description="Range of cells to read from the Google Sheet",
     )
+    google_sheet_range_names:str = Field(
+        default= os.getenv("GOOGLE_SHEET_RANGE_NAMES", "Sheet1!A1:A40"),
+        description = "Just the name list, so that we dont have to read 2years of redundent information"
+    )
     
     # Active staff rows configuration
     # These are the row numbers (1-indexed) in the Google Sheet for active staff members
