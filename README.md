@@ -11,6 +11,8 @@ Automated system to generate and send daily parade state attendance reports via 
 - Supports date customization and draft mode
 - Includes interactive Telegram bot with command handling
 
+run
+uv run python -m app.main
 ## Requirements
 
 - Python 3.9+
